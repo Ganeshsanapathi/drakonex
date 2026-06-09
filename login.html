@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRAKONEX Login</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#050505;
+color:white;
+}
+
+.login-card{
+width:400px;
+padding:40px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(0,198,255,0.3);
+border-radius:20px;
+backdrop-filter:blur(15px);
+box-shadow:0 0 25px rgba(0,198,255,0.2);
+text-align:center;
+}
+
+.login-card h1{
+color:#00c6ff;
+margin-bottom:10px;
+}
+
+.login-card p{
+color:#ccc;
+margin-bottom:25px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin:10px 0;
+border:none;
+outline:none;
+border-radius:10px;
+background:rgba(255,255,255,0.08);
+color:white;
+}
+
+input::placeholder{
+color:#aaa;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+background:#00c6ff;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:translateY(-3px);
+box-shadow:0 0 20px rgba(0,198,255,0.5);
+}
+
+.signup-link{
+margin-top:20px;
+display:block;
+color:#00c6ff;
+text-decoration:none;
+}
+
+.signup-link:hover{
+text-decoration:underline;
+}
+.login-card:hover{
+    box-shadow:0 0 40px rgba(0,198,255,0.4);
+}
+.secure-text{
+    margin-top:15px;
+    color:#888;
+    font-size:14px;
+}
+.forgot-password{
+    color:#00c6ff;
+    text-decoration:none;
+    font-size:14px;
+    display:block;
+    text-align:right;
+    margin-top:-10px;
+    margin-bottom:20px;
+}
+.otp-btn{
+    width:100%;
+    padding:15px;
+    margin-top:10px;
+    border:1px solid #00c6ff;
+    background:transparent;
+    color:#00c6ff;
+    border-radius:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-card">
+
+<h1>DRAKONEX</h1>
+<p>Welcome Back</p>
+
+<input type="email"id="email" placeholder="Email Address">
+
+<input type="password" id="password" placeholder="Password">
+
+<button id="LoginBtn">Login</button>
+
+
+<a href="signup.html" class="signup-link">
+Don't have an account? Sign Up
+</a>
+
+<p class="secure-text">🔒 Secure Login</p>
+<a href="#" class="forgot-password">
+Forgot Password?
+</a>
+
+</div>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC_jrxeAbxNpxx8W2j9Jv1WBdm5PZenabY",
+  authDomain: "drakonex-85bfb.firebaseapp.com",
+  projectId: "drakonex-85bfb",
+  storageBucket: "drakonex-85bfb.firebasestorage.app",
+  messagingSenderId: "741530513003",
+  appId: "1:741530513003:web:912806f58475a24d448b2e",
+  measurementId: "G-7SHX7R7B6G"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+document.getElementById("LoginBtn").addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+
+          alert("Login Successful!");
+
+          window.location.href = "index.html";
+
+      })
+      .catch((error) => {
+
+          alert(error.message);
+
+      });
+
+});
+
+</script>
+</body>
+</html>
